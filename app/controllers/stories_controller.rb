@@ -3,8 +3,11 @@ class StoriesController < ApplicationController
 	def index
 		if params[:sort] and params[:sort] == "top"
 			@stories = Story.order("votes_count DESC")
-		else
-			@stories = Story.order("created_at DESC")
+		
+		elsif params[:is_featured] and params[:is_featured] == "true"
+			@stories = Story.where(is_featured: true)
+
+		else @stories = Story.order("created_at DESC")
 		
 		end
 
