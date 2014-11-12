@@ -1,0 +1,26 @@
+<article>
+
+<% @stories.each do |story| %>
+
+
+
+	<section class="story">
+		<h1>
+			<%= link_to story.title, story.url %>
+		</h1>
+		<p>	<%= simple_format story.body %>	</p>
+
+		<%= link_to "Upvote", story_votes_path(story), method: :post %>
+		<%# Add in code for how many votes later%>
+		<%= link_to "0 comments", story_path(story) %> <br>
+
+	<ul>	
+		<li> By <%= story.author %> </li>
+		<li> About <%= time_ago_in_words story.created_at %> ago. </li>
+		<li> Votes: <%= pluralize story.votes.count, 'vote' %> </li>
+	</ul>
+	</section>
+
+<% end %>
+
+</article>
